@@ -8,7 +8,7 @@
 #pragma once
 
 #include <string>
-
+// Impports needed items for use.
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Timer.h>
@@ -17,11 +17,13 @@
 #include <frc/Joystick.h>
 #include <frc/SpeedControllerGroup.h>
 
+// Import ctre libraries. Requires the ctre libraries to be set up.
+#include "ctre/Phoenix.h"
+
 class Robot : public frc::TimedRobot {
+ // everything in the public section is accessable to things outside the class.
  public:
-
   Robot();
-
   void RobotInit() override;
   void RobotPeriodic() override;
   void AutonomousInit() override;
@@ -34,31 +36,33 @@ class Robot : public frc::TimedRobot {
   void TestPeriodic() override;
 
  private:
-
+  // Includes the functions in the private section so they can use the variables.
   void robot_drive(void);
-  void shoot(void);
-  void load_unload(void);
-  void pick_up(void);
-  void raise_lower(void);
+  void userControl(void);
   
+  // Defines a timer
   frc::Timer time;
-
+  
+  // Defines our joystick. We have a custom controller which includes a partailly dismantled joystick
+  // and an array of buttons. You should customize this to fit your controller
   frc::Joystick DriveStick{0};
   frc::Joystick Buttons{1};
-
-  frc::Spark Grabber{8};
-  frc::Spark FlyWheel{7};
-  frc::Spark BottomAndBack{6};
-  frc::Spark Front{5};
-  frc::Spark Raise_Lower{4};
-
-  frc::Spark FLMotor{3};
-  frc::Spark RLMotor{2};
-  frc::Spark FRMotor{1};
-  frc::Spark RRMotor{0};
-
-  frc::SpeedControllerGroup left{FLMotor, RLMotor};
-  frc::SpeedControllerGroup right{FRMotor, RRMotor};
-
-  frc::DifferentialDrive drive{left, right};
+  
+  // Defines our Spark motor controllers.
+  frc::Spark spark3 {7};
+  frc::Spark spark2{6};
+  frc::Spark spark{5};
+  frc::Spark Grabber{1};
+  frc::Spark FlyWheel{0};
+  frc::Spark FrontAndBack{3};
+  frc::Spark Bottom{1};
+  frc::Spark Raise_Lower{2};
+  
+  // Defines our TalonSRX drive motor controllers from ctre.
+  // ctre motor controllers cannot be put into speedcontrollergroups, so create your own drive function.
+  // It is simpler than you think.
+  TalonSRX FLMotor{0};
+  TalonSRX RLMotor{1};
+  TalonSRX FRMotor{2};
+  TalonSRX RRMotor{3};
 };

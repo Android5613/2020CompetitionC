@@ -11,58 +11,48 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
+// Tells the drive to turn off after .1 seconds and starts a timer.
 Robot::Robot() {
-  drive.SetExpiration(0.1);
-  time.Start();
-}
 
+}
+// Run on robot startup.
 void Robot::RobotInit() {
   
 }
-
-/**
- * This function is called every robot packet, no matter the mode. Use
- * this for items like diagnostics that you want ran during disabled,
- * autonomous, teleoperated and test.
- *
- * <p> This runs after the mode specific periodic functions, but before
- * LiveWindow and SmartDashboard integrated updating.
- */
+// Run with every packet recieved from robot.
 void Robot::RobotPeriodic() {
 
 }
-
+// Initializes autonomous specific items. Run on startup of autonomous.
 void Robot::AutonomousInit() {
   
 }
-
+// Run every .02 seconds during autonomous. May be overriden by the computer because .02 seconds is too slow.
 void Robot::AutonomousPeriodic() {
   
 }
-
+// Initializes teleop specific items. Run on startup of teleop.
 void Robot::TeleopInit() {
 
 }
-
+// Run every .02 seconds during teleop. May be overriden by the computer because .02 seconds is too slow.
 void Robot::TeleopPeriodic() {
-  shoot();
-  load_unload();
-  pick_up();
-  raise_lower();
+  userControl();
+  robot_drive();
 }
-
+// Initializes disabled specific items. Run on start of disabled mode.
 void Robot::DisabledInit() {
 
 }
-
+// Run every .02 seconds during disabled. May be overriden by the computer because .02 seconds is too slow.
 void Robot::DisabledPeriodic() {
-
+  
 }
-
+// Initializes test specific items. Run on startup of test mode.
 void Robot::TestInit() {
 
 }
-
+// Run every .02 seconds during test mode. May be overriden by the computer because .02 seconds is too slow.
 void Robot::TestPeriodic() {
 
 }
