@@ -13,9 +13,7 @@
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/Timer.h>
 #include <frc/Spark.h>
-#include <frc/drive/DifferentialDrive.h>
 #include <frc/Joystick.h>
-#include <frc/SpeedControllerGroup.h>
 
 // Import ctre libraries. Requires the ctre libraries to be set up.
 #include "ctre/Phoenix.h"
