@@ -1,4 +1,30 @@
 #include "Robot.h"
+
+void Robot::userControl() {
+  if (Buttons.GetRawButton(1)) {
+    Grabber.Set(-1);
+    Up_Down.Set(0);
+  }
+  else if (Buttons.GetRawButton(2)) {
+    Grabber.Set(1);
+    Up_Down.Set(0);
+  }
+  else if (Buttons.GetRawButton(3)) {
+    Up_Down.Set(1);
+    Grabber.Set(0);
+  }
+  else if (Buttons.GetRawButton(6)) {
+    Up_Down.Set(-1);
+    Grabber.Set(0);
+  }
+  else {
+    Grabber.Set(0);
+    Up_Down.Set(0);
+  }
+}
+
+/*
+#include "Robot.h"
 // User control function for controlling parts of the robot.
 void Robot::userControl() {
   // Fires the shooter.
@@ -50,8 +76,4 @@ void Robot::userControl() {
     Raise_Lower.Set(0);
   }
 }
-
-
-
-
-
+*/

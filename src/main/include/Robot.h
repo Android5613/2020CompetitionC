@@ -11,9 +11,13 @@
 // Impports needed items for use.
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
+#include "cscore_cpp.h"
 #include <frc/Timer.h>
 #include <frc/Spark.h>
 #include <frc/Joystick.h>
+#include "networktables/NetworkTable.h"
+#include "networktables/NetworkTableEntry.h"
+#include "networktables/NetworkTableInstance.h"
 
 // Import ctre libraries. Requires the ctre libraries to be set up.
 #include "ctre/Phoenix.h"
@@ -32,8 +36,9 @@ class Robot : public frc::TimedRobot {
   void DisabledPeriodic() override;
   void TestInit() override;
   void TestPeriodic() override;
-
+  
  private:
+ 
   // Includes the functions in the private section so they can use the variables.
   void robot_drive(void);
   void userControl(void);
@@ -47,14 +52,16 @@ class Robot : public frc::TimedRobot {
   frc::Joystick Buttons{1};
   
   // Defines our Spark motor controllers.
-  frc::Spark spark3 {7};
-  frc::Spark spark2{6};
-  frc::Spark spark{5};
+
+  frc::Spark Flywheel{0};
   frc::Spark Grabber{1};
-  frc::Spark FlyWheel{0};
-  frc::Spark FrontAndBack{3};
-  frc::Spark Bottom{1};
-  frc::Spark Raise_Lower{2};
+  frc::Spark Up_Down{2};
+  frc::Spark Transition{3};
+  frc::Spark Low_Conveyor{4};
+  frc::Spark High_Conveyor{5};
+
+  frc::Spark Telescope{6};
+  frc::Spark Winch{7};
   
   // Defines our TalonSRX drive motor controllers from ctre.
   // ctre motor controllers cannot be put into speedcontrollergroups, so create your own drive function.
