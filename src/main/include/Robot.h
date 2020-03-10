@@ -8,7 +8,7 @@
 #pragma once
 
 #include <string>
-// Impports needed items for use.
+// Imports needed items for use.
 #include <frc/TimedRobot.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include "cscore_cpp.h"
@@ -18,6 +18,7 @@
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 // Import ctre libraries. Requires the ctre libraries to be set up.
 #include "ctre/Phoenix.h"
@@ -38,13 +39,16 @@ class Robot : public frc::TimedRobot {
   void TestPeriodic() override;
   
  private:
- 
+   
   // Includes the functions in the private section so they can use the variables.
   void robot_drive(void);
   void userControl(void);
+  void limelight(void);
   
   // Defines a timer
   frc::Timer time;
+
+  std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   
   // Defines our joystick. We have a custom controller which includes a partailly dismantled joystick
   // and an array of buttons. You should customize this to fit your controller

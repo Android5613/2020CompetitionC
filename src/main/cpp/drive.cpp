@@ -2,7 +2,7 @@
 
 // This is the drive function to drive the robot.
 void Robot::robot_drive() {
-  //if (0.05 < DriveStick.GetX() or -0.05 > DriveStick.GetX() or 0.05 < DriveStick.GetZ() or -0.05 > DriveStick.GetX()) 
+  //if (0.05 < DriveStick.GetX() or -0.05 > DriveStick.GetX() or 0.05 < DriveStick.GetZ() or -0.05 > DriveStick.GetZ()) 
   //{
     double speed = DriveStick.GetY();
     double turn = DriveStick.GetZ() * -.5;
