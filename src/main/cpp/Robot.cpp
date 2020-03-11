@@ -38,7 +38,7 @@ void Robot::TeleopInit() {
 // Run every .02 seconds during teleop. May be overriden by the computer because .02 seconds is too slow.
 void Robot::TeleopPeriodic() {
   userControl();
-  robot_drive();
+  arcade_drive();
 }
 // Initializes disabled specific items. Run on start of disabled mode.
 void Robot::DisabledInit() {

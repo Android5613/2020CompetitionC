@@ -41,7 +41,7 @@ class Robot : public frc::TimedRobot {
  private:
    
   // Includes the functions in the private section so they can use the variables.
-  void robot_drive(void);
+  void arcade_drive(void);
   void userControl(void);
   void limelight(void);
   
@@ -57,12 +57,12 @@ class Robot : public frc::TimedRobot {
   
   // Defines our Spark motor controllers.
 
-  frc::Spark Flywheel{0};
+  frc::Spark Flywheel{5};
   frc::Spark Grabber{1};
   frc::Spark Up_Down{2};
   frc::Spark Transition{3};
   frc::Spark Low_Conveyor{4};
-  frc::Spark High_Conveyor{5};
+  frc::Spark High_Conveyor{0};
 
   frc::Spark Telescope{6};
   frc::Spark Winch{7};
