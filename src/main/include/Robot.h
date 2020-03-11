@@ -43,12 +43,12 @@ class Robot : public frc::TimedRobot {
   // Includes the functions in the private section so they can use the variables.
   void arcade_drive(void);
   void userControl(void);
-  void limelight(void);
+  //void limelight(void);
   
   // Defines a timer
   frc::Timer time;
 
-  std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   
   // Defines our joystick. We have a custom controller which includes a partailly dismantled joystick
   // and an array of buttons. You should customize this to fit your controller

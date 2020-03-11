@@ -1,7 +1,10 @@
+/*
 #include "Robot.h"
 
-float Kp = -0.1;
-float min_command = 0.05;
+float f = 1;
+float KpAim = -0.1f;
+float KpDistance = 0.1f;
+float min_command = 0.05f;
 
 void Robot::limelight() {
   
@@ -10,39 +13,27 @@ void Robot::limelight() {
   double targetFound = limelighttable->GetNumber("tv", 0.0);
   int angle = 30;
 
-  float distance = 52.5/(tan(ty+angle));
+  float distance = 64.25/(tan(ty+angle));
+  float heading_error = -tx;
+  float distance_error = distance - 24;
+  float steering_adjust = 0;
   
-
-  if (distance==24 and targetFound==1 and tx < -0.5 or tx > 0.5) {
-     
-
-
+  if (tx > 0.5) {
+    float steering_ajust = KpAim*heading_error - min_command;
   }
-  else if (distance==24 and targetFound==1) {
-     float adjust = 0;
-     float heading_error = -tx;
-
-     if (tx > .5) {
-       
-       adjust = Kp*heading_error - min_command;
-       
-     }
-     else if (tx <-0.5) {
-       adjust = Kp*heading_error +min_command
-     }
-    
-    
+  else if (tx < -0.5) {
+    float steering_adjust = KpAim*heading_error - min_command;
   }
-  else if (targetFound==1) {
-    
-    
-    
-  }
-  else {
 
-    
+  float distance_adjust = KpDistance * distance_error;
 
-  }
+  double left = distance_adjust + steering_adjust;
+  double right = distance_adjust - steering_adjust;
+
+  // Moves the motors
+  FLMotor.Set(ControlMode::PercentOutput, -left);
+  RLMotor.Set(ControlMode::PercentOutput, -left);
+  FRMotor.Set(ControlMode::PercentOutput, right);
+  RRMotor.Set(ControlMode::PercentOutput, right);
 }
-
-
+*/
