@@ -41,37 +41,66 @@ class Robot : public frc::TimedRobot {
  private:
    
   // Includes the functions in the private section so they can use the variables.
+  
+  // Drive the robot.
   void arcade_drive(void);
+  // Takes user input.
   void userControl(void);
-  //void limelight(void);
+  // Targeting with the limelight.
+  void limelight(void);
   
-  // Defines a timer
+  // Defines a timer.
   frc::Timer time;
-
-  // std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
   
+  // Defines the network table that is used by the limelight.
+  std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+
+  // A constant
+  float f = 1;
+  // Aiming constant affected by f
+  float KpAim = -0.1f;
+  // Movement constant affected by f
+  float KpDistance = 0.1f;
+  // The minimum commmand that can be used. May need adjustment.
+  float min_command = 0.05f;
+
   // Defines our joystick. We have a custom controller which includes a partailly dismantled joystick
-  // and an array of buttons. You should customize this to fit your controller
+  // and an array of buttons. You should customize this to fit your controller/controllers.
+
+  // Joystick for driving.
   frc::Joystick DriveStick{0};
+  // An array of buttons.
   frc::Joystick Buttons{1};
   
   // Defines our Spark motor controllers.
-
+  
+  // Wheel used to fire the power cells.
   frc::Spark Flywheel{5};
+  // Spinning tube in front to grab power cells.
   frc::Spark Grabber{1};
-  frc::Spark Up_Down{2};
+  // Used to move the arm the Grabber is attached to.
+  frc::Spark Grabber_Arm{2};
+  // Used to move the ball from the transition space imbetween the grabber and the conveyors.
   frc::Spark Transition{3};
+  // The bottom portion of the conveyor.
   frc::Spark Low_Conveyor{4};
+  // The top portion of the conveyor.
   frc::Spark High_Conveyor{0};
-
+  
+  // For the elevator when we finish it.
   frc::Spark Telescope{6};
   frc::Spark Winch{7};
   
   // Defines our TalonSRX drive motor controllers from ctre.
   // ctre motor controllers cannot be put into speedcontrollergroups, so create your own drive function.
   // It is simpler than you think.
+
+  // Front left
   TalonSRX FLMotor{0};
+  // Rear left
   TalonSRX RLMotor{1};
+  // Front Right
   TalonSRX FRMotor{2};
+  // Rear Right
   TalonSRX RRMotor{3};
 };
