@@ -9,7 +9,9 @@
 
 #include <iostream>
 
-#include <frc/smartdashboard/SmartDashboard.h>
+//#include <frc/smartdashboard/SmartDashboard.h>
+
+//#include "cameraserver/CameraServer.h"
 
 // Tells the drive to turn off after .1 seconds and starts a timer.
 Robot::Robot() {
@@ -25,11 +27,21 @@ void Robot::RobotPeriodic() {
 }
 // Initializes autonomous specific items. Run on startup of autonomous.
 void Robot::AutonomousInit() {
-  
+  // time.Reset();
 }
 // Run every .02 seconds during autonomous. May be overriden by the computer because .02 seconds is too slow.
 void Robot::AutonomousPeriodic() {
+  /*time.Start();
   
+  if (time.Get() <= 1) {
+    FLMotor.Set(ControlMode::PercentOutput, -0.7);
+    RLMotor.Set(ControlMode::PercentOutput, -0.7);
+    FRMotor.Set(ControlMode::PercentOutput, 0.7);
+    RRMotor.Set(ControlMode::PercentOutput, 0.7);
+  }
+  else if (time.Get() > 1) {
+    limelightauto();
+  }*/
 }
 // Initializes teleop specific items. Run on startup of teleop.
 void Robot::TeleopInit() {
@@ -38,7 +50,7 @@ void Robot::TeleopInit() {
 // Run every .02 seconds during teleop. May be overriden by the computer because .02 seconds is too slow.
 void Robot::TeleopPeriodic() {
   userControl();
-  // arcade_drive();
+  arcade_drive();
 }
 // Initializes disabled specific items. Run on start of disabled mode.
 void Robot::DisabledInit() {

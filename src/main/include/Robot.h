@@ -18,7 +18,6 @@
 #include "networktables/NetworkTable.h"
 #include "networktables/NetworkTableEntry.h"
 #include "networktables/NetworkTableInstance.h"
-#include "frc/smartdashboard/SmartDashboard.h"
 
 // Import ctre libraries. Requires the ctre libraries to be set up.
 #include "ctre/Phoenix.h"
@@ -30,7 +29,7 @@ class Robot : public frc::TimedRobot {
   void RobotInit() override;
   void RobotPeriodic() override;
   void AutonomousInit() override;
-  void AutonomousPeriodic() override;
+  
   void TeleopInit() override;
   void TeleopPeriodic() override;
   void DisabledInit() override;
@@ -42,27 +41,31 @@ class Robot : public frc::TimedRobot {
    
   // Includes the functions in the private section so they can use the variables.
   
+  void AutonomousPeriodic() override;
   // Drive the robot.
   void arcade_drive(void);
   // Takes user input.
   void userControl(void);
   // Targeting with the limelight.
   void limelight(void);
+  // limelight customized for the autonomous.
+  void limelightauto(void);
   
+
   // Defines a timer.
   frc::Timer time;
   
   // Defines the network table that is used by the limelight.
-  std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  // std::shared_ptr<NetworkTable> limelighttable = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
   // A constant
-  float f = 1;
+  //float f = 1;
   // Aiming constant affected by f
-  float KpAim = -0.1f;
+  //float KpAim = -0.1f;
   // Movement constant affected by f
-  float KpDistance = 0.1f;
+  //float KpDistance = 0.1f;
   // The minimum commmand that can be used. May need adjustment.
-  float min_command = 0.05f;
+  //float min_command = 0.05f;
 
   // Defines our joystick. We have a custom controller which includes a partailly dismantled joystick
   // and an array of buttons. You should customize this to fit your controller/controllers.
